@@ -24,6 +24,7 @@
 #include "cmsis_os.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "FreeRTOS.h"
 /* USER CODE END Includes */
   
 /* Private typedef -----------------------------------------------------------*/
@@ -264,6 +265,20 @@ void DMA2_Stream0_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+	// TODO set ADC sensors value ready flag to 1
+}
 
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
+	// TODO set UartReady flag to 1
+	extern osSemaphoreId uartTxSemaphoreHandle;
+	osSemaphoreRelease(uartTxSemaphoreHandle);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	// TODO set UartReady flag to 1
+	extern osSemaphoreId uartRxSemaphoreHandle;
+	osSemaphoreRelease(uartRxSemaphoreHandle);
+}
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

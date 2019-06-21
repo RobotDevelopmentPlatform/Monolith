@@ -47,12 +47,29 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 
+/* UART VARIABLES BEGIN */
+
+/* UART VARIABLES END */
+
+/* FREERTOS VARIABLES BEGIN */
+/* THREADS */
+osThreadId MenuTaskHandle;
+
+/* SEMAPHORES */
+osSemaphoreId uartRxSemaphoreHandle;
+osSemaphoreId uartTxSemaphoreHandle;
+osSemaphoreId adcSemaphoreHandle;
+
+/* MESSAGE QUEUES */
+
+/* FREERTOS VARIABLES END */
+
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+void menu(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -74,7 +91,15 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
+  /* UART */
+  osSemaphoreDef(uartRxSemaphore);
+  uartRxSemaphoreHandle = osSemaphoreCreate(osSemaphore(uartRxSemaphore), 1);
+  osSemaphoreDef(uartTxSemaphore);
+  uartTxSemaphoreHandle = osSemaphoreCreate(osSemaphore(uartTxSemaphore), 1);
+
+  /* ADC */
+  osSemaphoreDef(adcSemaphore);
+  adcSemaphoreHandle = osSemaphoreCreate(osSemaphore(adcSemaphore), 1);
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
@@ -91,7 +116,8 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+  osThreadDef(menuTask, menu, osPriorityRealtime, 0, 128);
+  MenuTaskHandle = osThreadCreate(osThread(menuTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -117,7 +143,43 @@ void StartDefaultTask(void const * argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-     
+void menu(void const * argument)
+{
+	extern UART_HandleTypeDef huart3;
+	uint8_t uartRxBuffer = 0;
+	uint8_t uartRxFlag = 0;
+
+	HAL_UART_Receive_DMA(&huart3, &uartRxBuffer, 1);
+  for(;;)
+  {
+	  uartRxFlag = osSemaphoreWait(uartRxSemaphoreHandle, 1);
+	  if(osOK == uartRxFlag){			// wait for complete UART receive, if received, then proceed
+
+		  switch(uartRxBuffer){										// simple switch menu - possible values - from 0 to 255 (uint8_t min to max value)
+		  	  case 0:
+				  break;
+			  case 1:
+				  break;
+			  case 2:
+				  break;
+			  /*
+			   * case 3:
+			   * case 4:
+			   * .
+			   * .
+			   * .
+			   */
+			  default:
+				  break;
+		  }
+
+		  HAL_UART_Receive_DMA(&huart3, &uartRxBuffer, 1);			// enable UART receive
+	  }else if (osErrorOS == uartRxFlag){
+		  // TODO When can't receive data from uart in time do something
+	  }
+    osDelay(1);
+  }
+}
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
