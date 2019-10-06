@@ -31,7 +31,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef enum AdcSignal {ADC_ON, ADC_OFF};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -54,6 +54,7 @@
 /* FREERTOS VARIABLES BEGIN */
 /* THREADS */
 osThreadId MenuTaskHandle;
+osThreadId SensorsTaskHandle;
 
 /* SEMAPHORES */
 osSemaphoreId uartRxSemaphoreHandle;
@@ -70,6 +71,7 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void menu(void const * argument);
+void sensors(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -118,6 +120,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   osThreadDef(menuTask, menu, osPriorityRealtime, 0, 128);
   MenuTaskHandle = osThreadCreate(osThread(menuTask), NULL);
+
+  osThreadDef(sensorsTask, sensors, osPriorityHigh, 0, 128);
+  SensorsTaskHandle = osThreadCreate(osThread(sensorsTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -150,17 +155,20 @@ void menu(void const * argument)
 	uint8_t uartRxFlag = 0;
 
 	HAL_UART_Receive_DMA(&huart3, &uartRxBuffer, 1);
-  for(;;)
-  {
+  for(;;) {
+
 	  uartRxFlag = osSemaphoreWait(uartRxSemaphoreHandle, 1);
 	  if(osOK == uartRxFlag){			// wait for complete UART receive, if received, then proceed
 
 		  switch(uartRxBuffer){										// simple switch menu - possible values - from 0 to 255 (uint8_t min to max value)
-		  	  case 0:
+		  	  case 0:		// hard stop
+		  		  //HardFault_Handler();
 				  break;
 			  case 1:
+				  osSignalSet(SensorsTaskHandle, ADC_ON);
 				  break;
 			  case 2:
+				  osSignalSet(SensorsTaskHandle, ADC_OFF);
 				  break;
 			  /*
 			   * case 3:
@@ -179,6 +187,32 @@ void menu(void const * argument)
 	  }
     osDelay(1);
   }
+}
+
+void sensors(void const * argument){
+
+	extern ADC_HandleTypeDef hadc1;
+	uint16_t sensorTab[4] = {0};
+	osEvent adcSignalFlag;
+
+	for(;;) {
+		adcSignalFlag = osSignalWait(0, osWaitForever);
+			if(osEventSignal == adcSignalFlag.status){
+
+				switch(adcSignalFlag.value.v){
+				case ADC_ON:
+					HAL_ADC_Start_DMA(&hadc1, (uint32_t*)sensorTab, 4);
+					break;
+				case ADC_OFF:
+					HAL_ADC_Stop_DMA(&hadc1);
+					break;
+				default:
+					break;
+				}
+
+			}
+		osDelay(1);
+	}
 }
 /* USER CODE END Application */
 

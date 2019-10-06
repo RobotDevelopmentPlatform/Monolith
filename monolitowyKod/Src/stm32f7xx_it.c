@@ -92,11 +92,19 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+	extern TIM_HandleTypeDef htim1;
+	extern UART_HandleTypeDef huart3;
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
+	HAL_ADC_Stop_DMA(&hadc1);
+	HAL_UART_Transmit_DMA(&huart3, (uint8_t*)"ERROR! RESTART NEEDED! HARD STOP!\r\n", sizeof("ERROR! RESTART NEEDED! HARD STOP!\r\n"));
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+	  // TODO Blinking LED
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -266,18 +274,22 @@ void DMA2_Stream0_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
-	// TODO set ADC sensors value ready flag to 1
+	extern osSemaphoreId adcSemaphoreHandle;
+	extern osThreadId SensorsTaskHandle;
+
+	osSemaphoreRelease(adcSemaphoreHandle);
+	osSignalSet(SensorsTaskHandle, 3);
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
-	// TODO set UartReady flag to 1
 	extern osSemaphoreId uartTxSemaphoreHandle;
+
 	osSemaphoreRelease(uartTxSemaphoreHandle);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	// TODO set UartReady flag to 1
 	extern osSemaphoreId uartRxSemaphoreHandle;
+
 	osSemaphoreRelease(uartRxSemaphoreHandle);
 }
 /* USER CODE END 1 */

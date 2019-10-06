@@ -1,4 +1,4 @@
-Src/stm32f7xx_hal_timebase_tim.o: ../Src/stm32f7xx_hal_timebase_tim.c \
+Src/stm32f7xx_hal_timebase_TIM.o: ../Src/stm32f7xx_hal_timebase_TIM.c \
  E:/STM32/workspace/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  E:/STM32/workspace/Monolith/monolitowyKod/Inc/stm32f7xx_hal_conf.h \
  E:/STM32/workspace/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
