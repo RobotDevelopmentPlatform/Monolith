@@ -7,8 +7,6 @@
 
 /* --------------------------------------- Includes --------------------------------------- */
 #include "Libraries/SharpProximitySensors.h"
-#include "FreeRTOS.h"
-#include "cmsis_os.h"
 #include "adc.h"
 #include "math.h"
 
@@ -28,7 +26,7 @@ static double GP2Y0A41SK_pow = -1.086;
  * 	@brief	Calculate distance measured by sensor. Equation: distance = a*(Voltage^b), Voltage = ADC*V_REF/(2^12 - 1)
  * 	@param	ADC_value - Value from ADC
  * 	@param	a - constant factor
- * 	@param	b - constant power
+ * 	@param	b - constant power (pow)
  * 	@retval	Distance in centimeters truncated to 1 decimal point
  */
 double adcToCm(uint16_t ADC_value, double a, double b){

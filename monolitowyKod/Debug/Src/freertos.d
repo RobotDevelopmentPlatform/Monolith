@@ -50,7 +50,8 @@ Src/freertos.o: ../Src/freertos.c \
  E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ E:/STM32/workspace/Monolith/monolitowyKod/Inc/Libraries/MonolithDrive.h
 
 E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 
@@ -155,3 +156,5 @@ E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Sourc
 E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 
 E:/STM32/workspace/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+
+E:/STM32/workspace/Monolith/monolitowyKod/Inc/Libraries/MonolithDrive.h:

@@ -24,6 +24,6 @@
 /* ---------------------------------- Exported Functions ---------------------------------- */
 /* INIT */
 void initMonolithDrive(void);
-
+void floodFillTask(void const * argument);
 
 #endif /* LIBRARIES_MONOLITHDRIVE_H_ */

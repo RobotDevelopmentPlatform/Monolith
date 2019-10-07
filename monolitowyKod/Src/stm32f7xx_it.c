@@ -274,23 +274,23 @@ void DMA2_Stream0_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
-	extern osSemaphoreId adcSemaphoreHandle;
-	extern osThreadId SensorsTaskHandle;
-
-	osSemaphoreRelease(adcSemaphoreHandle);
-	osSignalSet(SensorsTaskHandle, 3);
+//	extern osSemaphoreId adcSemaphoreHandle;
+//	extern osThreadId SensorsTaskHandle;
+//
+//	osSemaphoreRelease(adcSemaphoreHandle);
+//	osSignalSet(SensorsTaskHandle, 3);
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
-	extern osSemaphoreId uartTxSemaphoreHandle;
-
-	osSemaphoreRelease(uartTxSemaphoreHandle);
+//	extern osSemaphoreId uartTxSemaphoreHandle;
+//
+//	osSemaphoreRelease(uartTxSemaphoreHandle);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	extern osSemaphoreId uartRxSemaphoreHandle;
-
-	osSemaphoreRelease(uartRxSemaphoreHandle);
+//	extern osSemaphoreId uartRxSemaphoreHandle;
+//
+//	osSemaphoreRelease(uartRxSemaphoreHandle);
 }
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
