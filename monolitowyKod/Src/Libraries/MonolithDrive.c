@@ -7,54 +7,63 @@
 
 
 /* --------------------------------------- Includes --------------------------------------- */
-#include "Libraries/MonolithDrive.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
 #include "tim.h"
+#include "adc.h"
 
-#include <limits.h>
-#include <stdlib.h>
+#include "Libraries/MonolithDrive.h"
+#include "Libraries/SharpProximitySensors.h"
+#include "Libraries/stack.h"
 
-/* --------------------------------------- DEFINES ---------------------------------------- */
-#define MAZE_DIM 8
-
-#define NORTH 0b1000
-#define EAST 0b0100
-#define SOUTH 0b0010
-#define WEST 0b0001
 
 /* --------------------------------------- FREERTOS --------------------------------------- */
+/* THREADS */
+osThreadId drive_straight_task_handle = NULL;
+
+/* Semaphores */
+osSemaphoreId (adc_semaphore_id);
+
+/* Messages queue */
+
 
 /* --------------------------------------- Variables --------------------------------------- */
 /* ENCODERS */
-uint32_t encoderFL;
-uint32_t encoderRL;
-uint32_t encoderFR;
-uint32_t encoderRR;
+
+/* SENSORS */
+uint16_t Sensors[4];		// 0, 1 - FRONT, 2 - RIGHT, 3- LEFT
+
+uint32_t encoderFL;		// htim2
+uint32_t encoderRL;		// htim3
+uint32_t encoderFR;		// htim4
+uint32_t encoderRR;		// htim5
 
 /* DRIVE VARIABLES */
-uint16_t maxSpeed = 0;
+uint16_t maxSpeed = 300;
 
 /* FLOOD_FILL */
-typedef struct ff_cell{
-	uint8_t walls:5;		// bits in order (from MSB to LSB) NESW
-	uint8_t visited:1;		// 1 - visited, 0 - not visited
-	uint8_t value;			// flood-fill value
-}ff_cell_t;
-
 ff_cell_t ff_maze[MAZE_DIM][MAZE_DIM];
-
-/* MOUSE */
-typedef struct position{
-	uint8_t direction:5;	// bits in order (from MSB to LSB) NESW
-	uint8_t x, y;			// Y higher values -> to NORTH, x higher values -> to EAST
-} position_t;
-
 position_t mouse = {NORTH, 0, 0};
 
 /* --------------------------------------- Functions --------------------------------------- */
+
+/* PID ALGORITHM */
+/*
+ * Simple PID algorithm based on PID structure
+ */
+void PID(PID_t * value, uint8_t sensor_type){
+	if(sensor_type == ENCODER){
+		value->error =((htim2.Instance->CNT + htim3.Instance->CNT)/2 - (htim4.Instance->CNT + htim5.Instance->CNT)/2); // left minus right
+	}else if(sensor_type == DISTANCE_SENSOR){
+		value->error = side_sensor_distance(Sensors[3]) - side_sensor_distance(Sensors[2]); // left minus right
+	}
+	value->I += value->error;
+	value->D = value->error - value->last_error;
+	value->correction = (value->Kp*value->error) + (value->Kd*value->D) + (value->Ki*value->I);
+	value->last_error = value->error;
+}
 
 /* -------------- FLOOD-FILL ALGORITHM -------------- */
 /* flood-fill init */
@@ -92,98 +101,6 @@ void ff_init(void){
 
 }
 
-/* -------------- flood-fill stack -------------- */
-// A structure to represent a stack
-typedef struct ff_Stack {
-	int top;
-	unsigned capacity;
-	ff_cell_t** array;
-}ff_Stack_t;
-
-// function to create a stack of given capacity. It initializes size of stack as 0
-struct ff_Stack* create_ff_Stack(unsigned capacity)
-{
-	struct ff_Stack* ff_stack = (struct ff_Stack*)malloc(sizeof(struct ff_Stack));
-	ff_stack->capacity = capacity;
-	ff_stack->top = -1;
-	ff_stack->array = (ff_cell_t**)malloc(ff_stack->capacity * sizeof(ff_cell_t*));
-	return ff_stack;
-}
-
-// Stack is full when top is equal to the last index
-int isFull(struct ff_Stack* ff_stack)
-{
-	return ff_stack->top == ff_stack->capacity - 1;
-}
-
-// Stack is empty when top is equal to -1
-int isEmpty(struct ff_Stack* ff_stack)
-{
-	return ff_stack->top == -1;
-}
-
-// Function to add an item to stack.  It increases top by 1
-void push(struct ff_Stack* ff_stack, ff_cell_t* item)
-{
-	if (isFull(ff_stack))
-		return;
-	ff_stack->array[++ff_stack->top] = item;
-}
-
-// Function to remove an item from stack.  It decreases top by 1
-ff_cell_t* pull(struct ff_Stack* ff_stack)
-{
-//		if (isEmpty(ff_stack))
-//			return INT_MIN;
-	return ff_stack->array[ff_stack->top--];
-}
-
-// Function to return the top from stack without removing it
-ff_cell_t* peek(struct ff_Stack* ff_stack)
-{
-//		if (isEmpty(ff_stack))
-//			return INT_MIN;
-	return ff_stack->array[ff_stack->top];
-}
-
-uint8_t minOnStack(struct ff_Stack* ff_stack){
-	uint8_t tmpMin = (pull(ff_stack)->value);
-
-	while(!isEmpty(ff_stack)){
-		if(tmpMin >= (peek(ff_stack)->value) && 0 != (peek(ff_stack)->value) ){
-			tmpMin = (pull(ff_stack)->value);
-		}else{
-			pull(ff_stack);
-		}
-	}
-	return tmpMin;
-}
-
-void push_all_neighbours(ff_Stack_t * ff_stack){
-
-
-	if(mouse.x > 0){
-		if((ff_maze[(mouse.x)-1][mouse.y]).value != 0)
-			push(ff_stack, &ff_maze[(mouse.x)-1][mouse.y]);
-	}
-
-	if(mouse.y > 0){
-		if(ff_maze[mouse.x][(mouse.y)-1].value != 0)
-			push(ff_stack, &ff_maze[mouse.x][(mouse.y)-1]);
-	}
-
-	if(mouse.x < MAZE_DIM-1){
-		if(ff_maze[(mouse.x)+1][mouse.y].value != 0)
-			push(ff_stack, &ff_maze[(mouse.x)+1][mouse.y]);
-	}
-
-	if(mouse.y < MAZE_DIM-1){
-		if(ff_maze[mouse.x][(mouse.y)+1].value != 0)
-			push(ff_stack, &ff_maze[mouse.x][(mouse.y)+1]);
-	}
-}
-
-
 /* -------------- DRIVE -------------- */
 void initMonolithDrive(void){
 	MX_TIM1_Init();		// INIT TIMER1 with PWM for wheel motor drivers
@@ -209,6 +126,7 @@ void initMonolithDrive(void){
 	htim5.Instance->CNT = 0;
 }
 
+/*
 void wheelDriveFrontLeft(int16_t power){
 	if(power >= 0){
 		HAL_GPIO_WritePin(FL_PORT, FL_PIN, 1);
@@ -264,6 +182,79 @@ void wheelDriveRearRight(int16_t power){
 		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
 	}
 }
+*/
+
+void drive_straight_init(void const * power){
+// SENSORS INIT
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)Sensors, 4);
+
+	// start encoder compare match interrupts
+	HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_4);
+	HAL_TIM_OC_Start_IT(&htim3, TIM_CHANNEL_4);
+	HAL_TIM_OC_Start_IT(&htim4, TIM_CHANNEL_4);
+	HAL_TIM_OC_Start_IT(&htim5, TIM_CHANNEL_4);
+
+	// start encoders
+	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
+
+	// reset encoders value
+	htim2.Instance->CNT = 0;	// FL encoder
+	htim3.Instance->CNT = 0;	// RL encoder
+	htim4.Instance->CNT = 0;	// FR encoder
+	htim5.Instance->CNT = 0;	// RR encoder
+
+	// set encoder compare match value
+	htim2.Instance->CCR4 = 1000;	// FL encoder
+	htim3.Instance->CCR4 = 1000;	// RL encoder
+	htim4.Instance->CCR4 = 1000;	// FR encoder
+	htim5.Instance->CCR4 = 1000;	// RR encoder
+
+	// PWM motor driver direction select
+	if(power >= 0){
+		HAL_GPIO_WritePin(FL_PORT, FL_PIN, 1);
+		HAL_GPIO_WritePin(RL_PORT, RL_PIN, 1);
+		HAL_GPIO_WritePin(FR_PORT, FR_PIN, 0);
+		HAL_GPIO_WritePin(RR_PORT, RR_PIN, 0);
+	}else if(power < (void*)-1){
+		HAL_GPIO_WritePin(FL_PORT, FL_PIN, 0);
+		HAL_GPIO_WritePin(RL_PORT, RL_PIN, 0);
+		HAL_GPIO_WritePin(FR_PORT, FR_PIN, 1);
+		HAL_GPIO_WritePin(RR_PORT, RR_PIN, 1);
+
+	}
+}
+
+void drive_straight(int16_t power){
+	if(!drive_straight_task_handle){
+		osThreadDef(drive_straight, drive_straight_task, osPriorityHigh, 0, 256);
+		drive_straight_task_handle = osThreadCreate(osThread(drive_straight), power);
+	}
+}
+
+void drive_hard_stop(void){
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);		// FRONT LEFT start
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);		// FRONT RIGHT start
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);		// REAR LEFT start
+	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);		// REAR RIGHT start
+
+	if(drive_straight_task_handle){
+		osThreadTerminate(drive_straight_task_handle);
+		drive_straight_task_handle = NULL;
+	}
+}
+
+void set_left_speed(uint16_t power){
+	htim1.Instance->CCR1 = power;		// FRONT LEFT wheel pulse duty - max = 999
+	htim1.Instance->CCR2 = power;		// REAR LEFT wheel pulse duty - max = 999
+}
+
+void set_right_speed(uint16_t power){
+	htim1.Instance->CCR3 = power;		// FRONT LEFT wheel pulse duty - max = 999
+	htim1.Instance->CCR4 = power;		// REAR LEFT wheel pulse duty - max = 999
+}
 
 /* --------------------------------------- FREERTOS API --------------------------------------- */
 void floodFillTask(void const * argument){
@@ -310,7 +301,7 @@ void floodFillTask(void const * argument){
 					minVal = minOnStack(ff_neighbours);
 					if(!((ff_maze[mouse.x][mouse.y].value - 1) == minVal)){
 						ff_maze[mouse.x][mouse.y].value = minVal+1;
-						push_all_neighbours(ff_stack);
+						push_all_neighbours(ff_stack, ff_maze, &mouse);
 					}
 				}else{
 					neighboursCount = 0;
@@ -322,4 +313,99 @@ void floodFillTask(void const * argument){
 		neighboursCount = 0;
 		osDelay(1);
 	}
+}
+
+
+/* DRIVE FORWARD TASK */
+void drive_straight_task(void const * argument){
+
+/* variables */
+	PID_t encoder = {0,0,0,0,0,0,0,0,0,0};
+	PID_t distance_sensor = {0,0,0,0,0,0,0,0,0,0};
+	int16_t correction = 0, power;
+	osEvent sig;
+
+/* begin */
+	drive_straight_init(argument);
+
+	if(abs((int)argument) <= maxSpeed){
+		power = abs((int)argument);
+	}else{
+		power = maxSpeed;
+	}
+
+	htim1.Instance->CCR1 = power;		// FRONT LEFT wheel pulse duty - max = 999
+	htim1.Instance->CCR2 = power;		// REAR LEFT wheel pulse duty - max = 999
+	htim1.Instance->CCR3 = power;		// FRONT RIGHT wheel pulse duty - max = 999
+	htim1.Instance->CCR4 = power;		// REAR RIGHT wheel pulse duty - max = 999
+
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);		// FRONT LEFT start
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);		// FRONT RIGHT start
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);		// REAR LEFT start
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);		// REAR RIGHT start
+
+	for(;;){
+//		if(Sensors[0] > 2000 || Sensors[1] > 2000){
+//			driveHardStop();
+//		}
+		sig = osSignalWait(ADC_SIGNAL_FLAG, 5);
+		if(sig.status == osEventSignal){
+
+			PID(&encoder, ENCODER);
+			PID(&distance_sensor, DISTANCE_SENSOR);
+
+			correction = distance_sensor.correction + encoder.correction;
+
+			if(power + abs(correction) <= maxSpeed){
+				set_left_speed(power - correction/2);
+				set_right_speed(power + correction/2);
+			}else{
+				if(correction < 0){
+					set_left_speed(maxSpeed);
+					set_right_speed(power + correction);
+				}else{
+					set_left_speed(power - correction);
+					set_right_speed(maxSpeed);
+				}
+			}
+		}else{
+			drive_hard_stop();
+		}
+		osDelay(1);
+	}
+}
+
+/* --------------------------------------- INTERRUPTS --------------------------------------- */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+		osSignalSet(drive_straight_task_handle, ADC_SIGNAL_FLAG);
+}
+
+void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim == &htim2){
+		if((htim->Instance->CR1 & TIM_CR1_DIR) == 0){
+			encoderFL += 1000;
+		}else{
+			encoderFL -= 1000;
+		}
+	}else if(htim == &htim3){
+		if((htim->Instance->CR1 & TIM_CR1_DIR) == 0){
+			encoderRL += 1000;
+		}else{
+			encoderRL -= 1000;
+		}
+	}else if(htim == &htim4){
+		if((htim->Instance->CR1 & TIM_CR1_DIR) == 0){
+			encoderFR += 1000;
+		}else{
+			encoderFR -= 1000;
+		}
+	}else if(htim == &htim5){
+		if((htim->Instance->CR1 & TIM_CR1_DIR) == 0){
+			encoderRR += 1000;
+		}else{
+			encoderRR -= 1000;
+		}
+	}
+	// clear CNT register (clear encoder)
+	htim->Instance->CNT = 0;
 }

@@ -27,8 +27,17 @@ static double GP2Y0A41SK_pow = -1.086;
  * 	@param	ADC_value - Value from ADC
  * 	@param	a - constant factor
  * 	@param	b - constant power (pow)
- * 	@retval	Distance in centimeters truncated to 1 decimal point
+ * 	@retval	Distance in milimeters
  */
-double adcToCm(uint16_t ADC_value, double a, double b){
-	return (double) (trunc(10 * a * pow((ADC_value * V_REF/((1<<12) - 1)), b)))/10.0;
+uint16_t adcTomm(uint16_t ADC_value, double a, double b){
+	return (uint16_t) (trunc(10 * a * pow((ADC_value * V_REF/((1<<12) - 1)), b)));
+}
+
+
+uint16_t front_sensor_distance(uint16_t ADC_value){
+	return adcTomm(ADC_value, GP2Y0A51SK_a, GP2Y0A51SK_pow);
+}
+
+uint16_t side_sensor_distance(uint16_t ADC_value){
+	return adcTomm(ADC_value, GP2Y0A41SK_a, GP2Y0A41SK_pow);
 }

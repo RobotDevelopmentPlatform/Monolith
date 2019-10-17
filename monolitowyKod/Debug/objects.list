@@ -32,6 +32,7 @@
 "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
 "Src/Libraries/MonolithDrive.o"
 "Src/Libraries/SharpProximitySensors.o"
+"Src/Libraries/stack.o"
 "Src/adc.o"
 "Src/dma.o"
 "Src/freertos.o"

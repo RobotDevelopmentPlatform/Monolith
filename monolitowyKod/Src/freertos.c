@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
 #include "Libraries/MonolithDrive.h"
+#include "tim.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,12 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+extern uint16_t Sensors[4];  // 0, 1 - FRONT, 2 - RIGHT, 3- LEFT
+extern ADC_HandleTypeDef hadc1;
+extern uint16_t encoderFL;
+extern uint16_t encoderRL;
+extern uint16_t encoderFR;
+extern uint16_t encoderRR;
 /* UART VARIABLES BEGIN */
 
 /* UART VARIABLES END */
@@ -53,8 +59,11 @@
 /* FREERTOS VARIABLES BEGIN */
 /* THREADS */
 osThreadId floodFillTaskHandle;
+osThreadId stopTaskHandle;
+extern osThreadId driveForwardTaskHandle;
 /* SEMAPHORES */
-
+osSemaphoreDef (adc_semaphore);
+extern osSemaphoreId (adc_semaphore_id);
 /* MESSAGE QUEUES */
 
 /* FREERTOS VARIABLES END */
@@ -65,6 +74,7 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 extern void floodFillTask(void const * argument);
+void stopTask(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -82,7 +92,7 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
+
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
@@ -91,7 +101,7 @@ void MX_FREERTOS_Init(void) {
   /* ADC */
 
   /* USER CODE END RTOS_SEMAPHORES */
-
+  adc_semaphore_id = osSemaphoreCreate(osSemaphore(adc_semaphore), 1);
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
@@ -106,8 +116,8 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(floodFillTask, floodFillTask, osPriorityHigh, 0, 1024);
-//  floodFillTaskHandle = osThreadCreate(osThread(floodFillTask), NULL);
+  osThreadDef(stopTask, stopTask, osPriorityHigh, 0, 128);
+  stopTaskHandle = osThreadCreate(osThread(stopTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -121,19 +131,29 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
-
   /* USER CODE BEGIN StartDefaultTask */
+	osDelay(1000);
+	drive_straight(250);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  osDelay(15000);
+	  drive_hard_stop();
   }
   /* USER CODE END StartDefaultTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void stopTask(void const * argument){
 
+	for(;;){
+		if(Sensors[0] > 2000 || Sensors[1] > 2000){
+			drive_hard_stop();
+		}
+		osDelay(1);
+	}
+}
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
