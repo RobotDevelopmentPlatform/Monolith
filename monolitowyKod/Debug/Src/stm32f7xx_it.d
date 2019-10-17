@@ -1,148 +1,148 @@
 Src/stm32f7xx_it.o: ../Src/stm32f7xx_it.c \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/stm32f7xx_hal_conf.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/main.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cm7.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmInstr.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/cmsis_gcc.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmFunc.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmSimd.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/stm32f7xx_it.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/FreeRTOSConfig.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/stm32f7xx_hal_conf.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/main.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cm7.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmInstr.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/cmsis_gcc.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmFunc.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmSimd.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/stm32f7xx_it.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/FreeRTOSConfig.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
+ D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/stm32f7xx_hal_conf.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/stm32f7xx_hal_conf.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/main.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/main.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cm7.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cm7.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmInstr.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmInstr.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/cmsis_gcc.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/cmsis_gcc.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmFunc.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmFunc.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Include/core_cmSimd.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Include/core_cmSimd.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/stm32f7xx_it.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/stm32f7xx_it.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Inc/FreeRTOSConfig.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Inc/FreeRTOSConfig.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 
-C:/Users/Oskar/OneDrive/2018/eRat/Modules/eRatPlatform/software/eRatPlatform2/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+D:/Users/Micha³/GitHub/Monolith/monolitowyKod/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
