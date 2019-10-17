@@ -8,6 +8,16 @@ void drive_FR(float power);       // Prawy, przedni silnik - wartość w procent
 void drive_RR(float power);       // Prawy, tylny silnik - wartość w procentach w przedziale [-100% do +100%]
 ```
 
+### Zatrzymanie silnika:
+Aby zatrzymać silnik należy wywołać odpowiednią funkcję z wartością `power = 0`.
+Przykładowo:
+```
+void drive_FL(0);
+void drive_RL(0);  
+void drive_FR(0);       
+void drive_RR(0);
+```
+
 ### Maksymalną moc silników (czyli tą dla wartości _power = +-100%_) można zmienić tutaj:
 `#define MAX_POWER 500` - zmiana w zakresie 0 do 1000
 
